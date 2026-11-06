@@ -1,0 +1,34 @@
+[
+  {
+    "id": "math-requires-calculator",
+    "goal": "What is 17.5% of 2,340 EUR? Answer with the number only.",
+    "expect_contains": ["409.5"],
+    "expect_tools": ["calculator"],
+    "max_steps": 4
+  },
+  {
+    "id": "kb-lookup-pricing",
+    "goal": "How much does the Pro plan cost per user?",
+    "expect_contains": ["29"],
+    "expect_tools": ["search_knowledge_base"]
+  },
+  {
+    "id": "multi-step-kb-plus-math",
+    "goal": "A team of 12 wants the Pro plan. What is the yearly cost in EUR?",
+    "expect_contains": ["4176"],
+    "expect_tools": ["search_knowledge_base", "calculator"]
+  },
+  {
+    "id": "no-tool-for-chitchat",
+    "goal": "Say hello in German.",
+    "expect_regex": "hallo|guten",
+    "forbid_tools": ["calculator", "search_knowledge_base"],
+    "max_steps": 1
+  },
+  {
+    "id": "kb-unknown-should-admit",
+    "goal": "What is the company's parental leave policy? Use the knowledge base.",
+    "expect_regex": "(not|no|couldn't|could not|unable).{0,40}(find|information|found|available)",
+    "expect_tools": ["search_knowledge_base"]
+  }
+]

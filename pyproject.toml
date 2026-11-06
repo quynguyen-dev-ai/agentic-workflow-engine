@@ -1,0 +1,32 @@
+[project]
+name = "agent-engine"
+version = "1.0.0"
+description = "A typed engine for tool-using LLM agents with guardrails, traces and evals"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.7", "fastapi>=0.115", "uvicorn[standard]>=0.30"]
+
+[project.optional-dependencies]
+openai = ["openai>=1.50"]
+anthropic = ["anthropic>=0.40"]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.8"]
+
+[project.scripts]
+agent-engine = "agent_engine.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["agent_engine*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
